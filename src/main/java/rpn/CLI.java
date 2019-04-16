@@ -8,7 +8,8 @@ public class CLI {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
 
         System.out.println("About to evaluate '" + expression + "'");
-        long result = evaluate(expression);
+
+        int result = RPNCalculator.evaluate(expression.split(" "));
         System.out.println("> " + result);
     }
 
