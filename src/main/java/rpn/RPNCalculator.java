@@ -4,7 +4,6 @@ import java.util.Stack;
 
 public class RPNCalculator {
 
-    private static int returnValue = 0;
     private static String operators = "+-*/";
     private static Stack<String> stack = new Stack<String>();
 
@@ -18,9 +17,7 @@ public class RPNCalculator {
             }
         }
 
-        returnValue = Integer.valueOf(stack.pop());
-
-        return returnValue;
+        return Integer.valueOf(stack.pop());
     }
 
     private static void manageNumbers(String token){
