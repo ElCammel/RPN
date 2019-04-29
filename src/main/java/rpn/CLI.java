@@ -9,7 +9,7 @@ public class CLI {
 
         System.out.println("About to evaluate '" + expression + "'");
 
-        int result = RPNCalculator.evaluate(expression.split(" "));
+        Double result = RPNCalculator.evaluate(expression.split(" "));
         System.out.println("> " + result);
     }
 

@@ -4,11 +4,12 @@ import java.util.Stack;
 
 public class RPNCalculator {
 
-    private static int returnValue = 0;
     private static String operators = "+-*/";
     private static Stack<String> stack = new Stack<String>();
 
-    public static int evaluate(String[] tokens) {
+    public static Double evaluate(String[] tokens) {
+
+        stack.clear();
 
         for (String token : tokens) {
             if (!operators.contains(token)) { //push to stack if it is a number
@@ -18,14 +19,14 @@ public class RPNCalculator {
             }
         }
 
-        returnValue = Integer.valueOf(stack.pop());
+        Double returnValue = Double.valueOf(stack.pop());
 
         return returnValue;
     }
 
     private static void manageNumbers(String token){
-        int a = Integer.valueOf(stack.pop());
-        int b = Integer.valueOf(stack.pop());
+        Double a = Double.valueOf(stack.pop());
+        Double b = Double.valueOf(stack.pop());
 
         switch (token) {
             case "+":
