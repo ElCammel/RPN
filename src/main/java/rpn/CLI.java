@@ -12,8 +12,4 @@ public class CLI {
         Double result = RPNCalculator.evaluate(expression.split(" "));
         System.out.println("> " + result);
     }
-
-    static long evaluate(String expression) {
-        return 0;
-    }
 }
