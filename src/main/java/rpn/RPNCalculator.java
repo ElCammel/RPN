@@ -4,18 +4,18 @@ import java.util.Stack;
 
 public class RPNCalculator {
 
-    private static String operators = "+-*/";
-    private static Stack<String> stack = new Stack<String>();
+    public Double evaluate(String expression, Operators operators) {
+        Stack<Double> stack = new Stack<Double>();
 
-    public static Double evaluate(String[] tokens) {
-
-        stack.clear();
+        String[] tokens = Tokenizer.tokenize(expression);
 
         for (String token : tokens) {
-            if (!operators.contains(token)) { //push to stack if it is a number
-                stack.push(token);
+            Operator operator = operators.findOperator(token);
+
+            if (operator == null) { //push to stack if it is a number
+                stack.push(Double.valueOf(token));
             } else {//pop numbers from stack if it is an operator
-                manageNumbers(token);
+                stack = operator.calculate(stack);
             }
         }
 
@@ -24,24 +24,5 @@ public class RPNCalculator {
         return returnValue;
     }
 
-    private static void manageNumbers(String token){
-        Double a = Double.valueOf(stack.pop());
-        Double b = Double.valueOf(stack.pop());
-
-        switch (token) {
-            case "+":
-                stack.push(String.valueOf(a + b));
-                break;
-            case "-":
-                stack.push(String.valueOf(b - a));
-                break;
-            case "*":
-                stack.push(String.valueOf(a * b));
-                break;
-            case "/":
-                stack.push(String.valueOf(b / a));
-                break;
-        }
-    }
 
 }
