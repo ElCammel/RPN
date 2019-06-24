@@ -10,18 +10,10 @@ public class CLI {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
 
         System.out.println("About to evaluate '" + expression + "'");
-        List<Operator> operatorsList = new ArrayList<>();
 
-        operatorsList.add(new Add("+"));
-        operatorsList.add(new Substract("-"));
-        operatorsList.add(new Multiply("*"));
-        operatorsList.add(new Divide("/"));
+        InMemoryBus bus = new InMemoryBus();
+        bus.subscribe("expression-type", new TokenizerConsumer(bus));
 
-        Operators operators = new Operators(operatorsList);
-
-        RPNCalculator rpnCalculator = new RPNCalculator();
-        Double result = rpnCalculator.evaluate(expression, operators);
-
-        System.out.println("> " + result);
+        bus.publish(new ExpressionMessage(""));
     }
 }
